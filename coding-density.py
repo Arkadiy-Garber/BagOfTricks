@@ -247,8 +247,6 @@ parser = argparse.ArgumentParser(
 
 parser.add_argument('-gff', type=str, help='contigs in FASTA format')
 
-parser.add_argument('-out', type=str, help="GFF file")
-
 if len(sys.argv) == 1:
     parser.print_help(sys.stderr)
     sys.exit(0)
@@ -256,34 +254,83 @@ if len(sys.argv) == 1:
 args = parser.parse_known_args()[0]
 
 
-gffDict = defaultdict(list)
+# gffDict = defaultdict(list)
+# totalLength = 0
+# totalCoding = 0
+# gff = open(args.gff)
+# for i in gff:
+#     if re.match(r'#', i):
+#         if re.match(r'##FASTA', i):
+#             break
+#         elif re.match(r'##sequence-region', i):
+#             ls = i.rstrip().split(" ")
+#             length = int(ls[3])
+#             totalLength += length
+#         else:
+#             pass
+#     else:
+#         ls = i.rstrip().split("\t")
+#         if len(ls) > 1:
+#             if ls[2] == "gene":
+#                 gffDict[ls[0]].append([ls[3], ls[4]])
+#                 geneLength = int(ls[4]) - int(ls[3])
+#                 totalCoding += geneLength
+#                 print(ls)
+#                 print(geneLength)
+#                 print("")
+#
+#
+# print(totalLength)
+# print(totalCoding)
+#
+# print(args.gff + "\t" + str(round(totalCoding/totalLength, 3)))
+
+
 totalLength = 0
-totalCoding = 0
+gffDict = defaultdict(list)
+
+gffFile = args.gff
+base = allButTheLast(gffFile, ".")
+gbkFile = base + ".gb"
+
+
+
 gff = open(args.gff)
 for i in gff:
-    if re.match(r'#', i):
-        if re.match(r'##FASTA', i):
-            break
-        elif re.match(r'##sequence-region', i):
-            ls = i.rstrip().split(" ")
-            length = int(ls[3])
-            totalLength += length
-        else:
-            pass
+    if re.findall(r'FASTA', i):
+        break
     else:
-        ls = i.rstrip().split("\t")
-        if ls[2] == "gene":
-            gffDict[ls[0]].append([ls[3], ls[4]])
-            geneLength = int(ls[4]) - int(ls[3])
-            totalCoding += geneLength
+        if not re.match(r'#', i):
+            ls = i.rstrip().split("\t")
+            if len(ls) > 1:
+                if ls[2] == "gene":
+                    gffDict[ls[0]].append([int(ls[3]), int(ls[4])])
+                    # print(ls)
+                    # print(ls[8].split("ID=")[1].split(";")[0])
+                    # print("")
+        else:
+            if re.match(r'##sequence-region', i):
+                ls = i.rstrip().split(" ")
+                length = int(ls[3])
+                totalLength += length
 
+totalIG = 0
+for i in gffDict.keys():
+    if len(gffDict[i]) > 2:
+        end = 0
+        start = 0
+        # print(i)
+        for j in sorted(gffDict[i]):
+            start = str(j[0])
+            if end > 0:
+                IG = int(start) - int(end)
+                if IG > 0:
+                    totalIG += IG
+            end = int(j[1])
 
-print(args.gff + "\t" + str(round(totalCoding/totalLength, 3)))
-
-
-
-
-
+coding = (totalLength - totalIG)
+cd = coding/totalLength
+print(args.gff + "\t" + str(cd))
 
 
 
