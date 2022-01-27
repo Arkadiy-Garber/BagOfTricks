@@ -33,7 +33,7 @@ file = open(args.f, "r")
 seq = ''
 header = ''
 if args.o != args.f:
-    out = open(args.output, "w")
+    out = open(args.o, "w")
     for i in file:
         i = i.rstrip()
         if re.match(r'^>', i):
