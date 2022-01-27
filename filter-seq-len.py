@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# !/bin/sh
 # Author: Arkadiy Garber
 from collections import defaultdict
 import statistics
