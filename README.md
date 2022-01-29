@@ -31,6 +31,20 @@ file name - coding density - genome size (in Mb) - number of coding genes - numb
 #### Translates user-provided DNA sequences to proteins
     ribosome.py -i coding_genes.ffn -o protein_translations.faa -x y
 
+# samtools_looper.sh
+#### A wrapper for three samtools commands to generate sorted BAM files for a directory containing SAM files (with .sam filename extension)
+    samtools_looper.sh /path/to/samFiles/
+
+## silva-survey.py
+#### Finds and lists (in a generated CSV file) all 16S sequences and all available meta-data associated with a provided taxomomic name (at any taxonomic rank)
+    silva-survey.py -taxa Sodalis -silva_DB /path/to/silva_db.fasta -out_dir ./
+
+## ssuSilva.py
+#### Takes as input rRNA sequence reads, maps them to the SILVA datbase of 16S sequences, and genertes a taxonomic summary
+    ssuSilva.py -reads rRNA.fasta -silva_DB /path/to/silva_DB.fasta -t 16 -perc_identity 97 -min_aln 100 -out rRNA_taxa_summary
+
+
+
 
 
 
