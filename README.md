@@ -23,3 +23,15 @@ file name - coding density - genome size (in Mb) - number of coding genes - numb
 ### Calculate exact weights in daltons from protein sequences
     daltons.py -f proteins.faa
 
+## masker.py
+### Mask alignment positions with too many gaps (user-defined fraction)
+    masker.py -i alignment.fa -o alignment.masked.fa -m 0.5
+
+## ribosome.py
+### Translates user-provided DNA sequences to proteins
+    ribosome.py -i coding_genes.ffn -o protein_translations.faa -x y
+
+
+
+
+
