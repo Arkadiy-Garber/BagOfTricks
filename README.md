@@ -31,7 +31,7 @@ file name - coding density - genome size (in Mb) - number of coding genes - numb
 #### Translates user-provided DNA sequences to proteins
     ribosome.py -i coding_genes.ffn -o protein_translations.faa -x y
 
-# samtools_looper.sh
+## samtools_looper.sh
 #### A wrapper for three samtools commands to generate sorted BAM files for a directory containing SAM files (with .sam filename extension)
     samtools_looper.sh /path/to/samFiles/
 
