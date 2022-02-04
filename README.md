@@ -43,7 +43,9 @@ file name - coding density - genome size (in Mb) - number of coding genes - numb
 #### Takes as input rRNA sequence reads, maps them to the SILVA datbase of 16S sequences, and genertes a taxonomic summary
     ssuSilva.py -reads rRNA.fasta -silva_DB /path/to/silva_DB.fasta -t 16 -perc_identity 97 -min_aln 100 -out rRNA_taxa_summary
 
-
+## codonUsage.py
+#### Provides a summary of codon usage for each amino acid. Takes as input gene sequences in nucleotide FASTA format.
+    codonUsage.py -g genes.ffn -o genes.codonUsage.csv
 
 
 
