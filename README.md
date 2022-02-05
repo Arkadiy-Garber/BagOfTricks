@@ -1,5 +1,5 @@
 # BagOfTricks
-A collection of python and bash scripts for various bioinformatics-related tasks that I've found useful over the years, and maybe others will do.
+A collection of python and bash scripts for various bioinformatics-related tasks that I've found useful over the years.
 
 
 # Some examples:
