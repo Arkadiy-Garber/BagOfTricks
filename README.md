@@ -1,6 +1,8 @@
 # BagOfTricks
-A collection of python and bash scripts for various bioinformatics-related tasks
+A collection of python and bash scripts for various bioinformatics-related tasks that I've found useful over the years, and maybe others will do.
 
+
+# Some examples:
 ## FindFindMeHemes.py
 #### Prediction of heme-binding motifs
     FindMeHemes.py -contigs contigs.fna -outDir ./ -mode metagenome
