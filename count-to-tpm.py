@@ -25,7 +25,8 @@ parser.add_argument('-out', type=str, help="name output file (default is the nam
 parser.add_argument('-out2', type=str, help="name output file for tpm calculated from reverse strand-mapping counts table "
                                             "(default is the name of your reverse count file appended with \'.tpm\')", default="NA")
 
-parser.add_argument('--wagner', type=str, help="include this flag to use the equation from Wagner et al., 2012 paper. Must include read length via the -len argument with thos flag", const=True, nargs="?")
+parser.add_argument('--wagner', type=str, help="include this flag to use the equation from Wagner et al., 2012 paper: https://pubmed.ncbi.nlm.nih.gov/22872506/ "
+                                               "Must include the estimated average read length via the -len argument with this flag. If not, this script will use 150 bp as a default.", const=True, nargs="?")
 
 if len(sys.argv) == 1:
     parser.print_help(sys.stderr)
